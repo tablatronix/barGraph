@@ -32,9 +32,20 @@ void BarGraph::drawBar (int nPer){
     _tft->fillRect(_x+14, _y + (100-nPer), 30, nPer - _lastPercent,  _barColor);	
   }    
   _lastPercent = nPer;  
-  
 }
 
+void BarGraph::drawBarHorizontal (int nPer){
+  if (abs(nPer - _lastPercent) < 1) return;
+  if(nPer < _lastPercent){
+//    _tft->fillRect(61+i*OFFSET, 20 + (100-_lastPercent), 30, _lastPercent - nPer,  BACKCOLOR);     
+    _tft->fillRect(_x+(100-_lastPercent), _y + 14, _lastPercent - nPer, 30,  _backColor);       
+  }
+  else{
+//    _tft->fillRect(61+i*OFFSET, 20 + (100-nPer), 30, nPer - _lastPercent,  BARCOLOR);
+    _tft->fillRect(_x+(100-nPer), _y + 14, nPer - _lastPercent, 30, _barColor);  
+  }    
+  _lastPercent = nPer;  
+}
 
 void BarGraph::drawScale(){
   char buf[10];

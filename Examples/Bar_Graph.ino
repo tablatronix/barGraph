@@ -69,27 +69,27 @@ void loop(){
   if (old_second != second()) {
     old_second = second();
 
-    RawValue = analogRead(analogIn);
+    RawValue = random(1023);
     newPercent = int((RawValue/1024.0)* 100.0);
     
     bar0.drawBar((int)newPercent);     
     bar0.drawText(RawValue, 3);
 
-    RawValue = analogRead(analogIn)*2;
+    RawValue = random(1023)*2;
     if (RawValue > 1023)
        RawValue = 1023;
     newPercent = int((RawValue/1024.0)* 100.0);
     bar1.drawBar((int)newPercent);     
     bar1.drawText(RawValue, 2);
 
-    RawValue = analogRead(analogIn)*3;
+    RawValue = random(1023)*3;
     if (RawValue > 1023)
        RawValue = 1023;
     newPercent = int((RawValue/1024.0)* 100.0);
     bar2.drawBar((int)newPercent);     
     bar2.drawText(RawValue, 1);
 
-    RawValue = analogRead(analogIn)*4;
+    RawValue = random(1023)*4;
     if (RawValue > 1023)
        RawValue = 1023;
     newPercent = int((RawValue/1024.0)* 100.0);

@@ -17,6 +17,7 @@ class BarGraph
 	void begin(int l, int u, int x, int y, adafruit_tft* tft);
 	void setColor(int bar, int back);
     void drawBar(int nPer);
+    void drawBarHorizontal(int nPer);
 	void drawScale();
 	void drawText(String s) ;
 	void drawText(char* s) ;
