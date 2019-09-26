@@ -30,21 +30,33 @@ void BarGraph::drawBar (int nPer){
   else{
 //    _tft->fillRect(61+i*OFFSET, 20 + (100-nPer), 30, nPer - _lastPercent,  BARCOLOR);
     _tft->fillRect(_x+14, _y + (100-nPer), 30, nPer - _lastPercent,  _barColor);	
-  }    
+  }
   _lastPercent = nPer;  
 }
 
 void BarGraph::drawBarHorizontal (int nPer){
+  float size = _upper-_lower;
+  float pixels = size/100;
+  float Xa;
+  float Xb;
+  // Serial.println("size:" + (String) size);
+  // Serial.println("pixels:" + (String)(pixels));
+
   if (abs(nPer - _lastPercent) < 1) return;
+  
+  Xa = _x + (_lastPercent*pixels);
+  Xb = (nPer-_lastPercent)*pixels; // WIDTH!!!!! 
+
   if(nPer < _lastPercent){
-//    _tft->fillRect(61+i*OFFSET, 20 + (100-_lastPercent), 30, _lastPercent - nPer,  BACKCOLOR);     
-    _tft->fillRect(_x+(100-_lastPercent), _y + 14, _lastPercent - nPer, 30,  _backColor);       
+    _tft->fillRect(round(Xa), _y + 14, round(Xb), 15, _backColor);    
   }
   else{
-//    _tft->fillRect(61+i*OFFSET, 20 + (100-nPer), 30, nPer - _lastPercent,  BARCOLOR);
-    _tft->fillRect(_x+(100-nPer), _y + 14, nPer - _lastPercent, 30, _barColor);  
-  }    
-  _lastPercent = nPer;  
+    _tft->fillRect(round(Xa), _y + 14, round(Xb), 15, _barColor);
+  }
+  // Serial.println("per:" + (String) nPer);
+  // Serial.println("Xa:" + (String)round(Xa));
+  // Serial.println("Xb:" + (String)round(Xb));
+  _lastPercent = nPer;
 }
 
 void BarGraph::drawScale(){
